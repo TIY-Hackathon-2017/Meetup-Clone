@@ -1,11 +1,16 @@
 package com.tiyhackathon.meetup.domain;
 
+import javax.persistence.*;
 import java.util.Date;
 
 /**
  * Created by David Turk on 8/8/17.
  */
+@Entity
+@Table(name = "events")
 public class Event {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private User admin;
     private String name;
@@ -17,6 +22,8 @@ public class Event {
     public Event() {
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }
@@ -25,6 +32,8 @@ public class Event {
         this.id = id;
     }
 
+    //TODO: Relational stuff
+    @Column()
     public User getAdmin() {
         return admin;
     }
@@ -33,6 +42,7 @@ public class Event {
         this.admin = admin;
     }
 
+    @Column(name = "eventname")
     public String getName() {
         return name;
     }
@@ -41,6 +51,7 @@ public class Event {
         this.name = name;
     }
 
+    @Column(name = "location")
     public String getLocation() {
         return location;
     }
@@ -49,6 +60,7 @@ public class Event {
         this.location = location;
     }
 
+    @Column(name = "description")
     public String getDescription() {
         return description;
     }
@@ -57,6 +69,7 @@ public class Event {
         this.description = description;
     }
 
+    @Column(name = "date")
     public Date getDate() {
         return date;
     }
@@ -65,6 +78,7 @@ public class Event {
         this.date = date;
     }
 
+    @Column(name = "status")
     public Status getStatus() {
         return status;
     }
