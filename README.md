@@ -115,14 +115,14 @@ fetch(/api/notes/2)
     } else {
       res.json()
         .then( (data) => {
-          let event = data.payload;
+          let note = data.payload;
         });
     }
   });
 ```
 ###### Response
 ```JSON
-event = {
+note = {
           "id": "7",
           "author":{
             "id": "42",
