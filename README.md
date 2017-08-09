@@ -11,29 +11,6 @@ RESTful API created by David and Vijee
 ### Note
 
 ## Response Data Overview
-All responses will be sent back in the form of a JSON string (even those in which an error has occurred). Each response JSON will be in the following structure:
-
-```JSON
-"{
-  "status":
-  "payload":
-}"
-```
-In this JSON, the status key will have the value of the HTTP status of the response while the payload key will have the value of what ever information was sent back (data, error messages, etc.). This standard JSON response is chosen so that the front end may always act the same way in process down to data regardless of the response sent. As an example see the JavaScript code below:
-
-```JavaScript
-fetch(url)
-  .then( (res) => return res.json())
-  .then( (data) => {
-    //Check response status and handle errors
-    if(data.status !== 200){
-      //Handle errors with error messages in payload
-    }
-    //Required data is in payload
-  });
-```
-
-For specifics of the payload that will be sent, refer to each individual section.
 
 ## Endpoints
 The endpoints are organized into domains of functionality.  The domains are Login/Register, Events, Users, Acquaintances, Notes. In each section can be found some useful information.
@@ -71,13 +48,13 @@ These are the endpoints that handle events. Many of these endpoints require admi
 | /{eventId}/stop   | POST    | Marks an event as finished  | TRUE           | 200, 403, 404, 500      |
 | /{eventId}/rsvp   | POST    | Adds the user as going      | FALSE          | 200, 404, 500           |
 
-#### Payload
+<!-- #### Payload
 | URL               | Status  | Payload  |
 |:------------------|:--------|:---------|
 | /                 | 200     | [Event]  |
 | /{eventId}        | 200     | Event    |
 
-NOTE: for all HTTP statuses that are not 200, the payload will be an array of error messages that may be displayed or used.
+NOTE: for all HTTP statuses that are not 200, the payload will be an array of error messages that may be displayed or used. -->
 
 ### Users
 These endpoints handle retrieving information pertaining to a user.  As it stands most information is not need directly from a user but users are found consequently through requests for event, etc. All end points in this section should be prefaced with /api/users (i.e / -> /api/users OR /{userId} -> /api/users/{userId}).
@@ -93,12 +70,12 @@ These endpoints handle retrieving information pertaining to a user.  As it stand
 | /{userId}          | GET     | Gets a specific user   | 200, 404, 500     |
 | /block/{id}        | POST    | Block a specified user | 200, 404, 500     |
 
-#### Payload
+<!-- #### Payload
 | URL        | Status | Payload   |
 |:-----------|:------:|:----------|
 | /{userId}  | 200    | User      |
 
-NOTE: for all HTTP statuses that are not 200, the payload will be an array of error messages that may be displayed or used.
+NOTE: for all HTTP statuses that are not 200, the payload will be an array of error messages that may be displayed or used. -->
 
 
 ### Acquaintance
@@ -122,14 +99,14 @@ These endpoints are used to create, find, and remove acquaintance requests betwe
 | /{aqId}            | DELETE  | Delete a specific acquaintance                  | 200, 400, 404, 500     |
 | /request/{reqId}   | DELETE  | Delete a specific acquaintance request          | 200, 400, 404, 500     |
 
-#### Payload
+<!-- #### Payload
 | URL                 | Status | Payload   | Description                                                                |
 |:--------------------|:------:|:----------|:---------------------------------------------------------------------------|
 | /of/{userId}        | 200    | [User]    | An array of all users that are acquaintances of the specific user          |
 | /incoming/{userId}  | 200    | [User]    | An array of users who are requesting an acquaintance with a specific user  |
 | /outgoing/{userId}  | 200    | [User]    | An array of users currently being requested by a specific user             |
 
-NOTE: for all HTTP statuses that are not 200, the payload will be an array of error messages that may be displayed or used.
+NOTE: for all HTTP statuses that are not 200, the payload will be an array of error messages that may be displayed or used. -->
 
 ### Notes
 These endpoints are for creating, finding, updating, and deleting notes that a user can make about an acquaintance. All endpoints in this section should be prefaced with /api/notes (e.g /{userId} -> /api/notes/{userId}).
@@ -150,10 +127,10 @@ These endpoints are for creating, finding, updating, and deleting notes that a u
 | /{noteId}        | DELETE  | Deletes a specific note                   | 200, 400, 404, 500 |
 | /for/{userId}    | GET     | Get all notes for a specified user        | 200, 404, 500      |
 
-#### Payload
+<!-- #### Payload
 | URL           | Status | Payload   |
 |:--------------|:------:|:----------|
 | /{noteId}     | 200    | Note      |
 | /for/{userId} | 200    | [Note]    |
 
-NOTE: for all HTTP statuses that are not 200, the payload will be an array of error messages that may be displayed or used.
+NOTE: for all HTTP statuses that are not 200, the payload will be an array of error messages that may be displayed or used. -->
